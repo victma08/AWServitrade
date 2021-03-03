@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset='utf-8'>
+		<title> ServiTrade </title>
+	</head>
+	<body>
+		<a href="index.html"> Índice </a> 
+		<a href="detalles.html">Detalles </a>, 
+		<a href="bocetos.html">Bocetos </a>, 
+		<a href="miembros.html">Miembros </a>, 
+		<a href="planificacion.html">Planificación </a>
+		<a href="contacto.html">Contacto </a> 
+		
+		<div class="container">
+			<form action="actionFormularioContacto.php" id="formularioContacto">
+
+				<label for="nombre">Nombre:</label>
+				<input type="text" id="nombre" name="nombre" placeholder="Nombre">
+				<br/>
+				<label for="apellido">Apellido:</label>
+				<input type="text" id="apellido" name="apellido" placeholder="Apellido">
+				<br/>
+				<label for="email">Dirección de email:</label>
+				<input type="text" id="email" name="email" placeholder="Email">
+				<br/>
+				<p>Select a maintenance drone:</p>
+				<div>
+					<input type="radio" id="radioButtonOp" name="radioButtonOp" value="evaluacionRadioB"
+							checked>
+					<label for="evaluacion">Evaluación</label>
+				</div>
+
+				<div>
+					<input type="radio" id="radioButtonOp" name="radioButtonOp" value="sugerenciasRadioB">
+					<label for="sugerencias">Sugerencias</label>
+				</div>
+
+				<div>
+					<input type="radio" id="radioButtonOp" name="radioButtonOp" value="criticasRadioB">
+					<label for="criticas">Críticas</label>
+				</div>
+				<br/>
+				<label for="terminosCondiciones">Marque esta casilla para verificar que ha leído nuestros términos y condiciones del servicio <input type="checkbox" id="cbox1" value="first_checkbox"></label>
+				<br/>
+
+				<label for="subject">Consulta</label>
+				<textarea id="subject" name="subject" placeholder="Escribe tu consulta.." style="height:200px"></textarea>
+				<br/>
+				<input type="submit" value="Envíar">
+		
+		  </form>
+		</div>
+			
+	</body>
+</html>
