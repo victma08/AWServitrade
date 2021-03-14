@@ -6,39 +6,39 @@
 	</head>
 	<body>
 		<h1>Contacto</h1>
-		<a href="index.html"> Índice </a> 
-		<a href="detalles.html">Detalles </a>, 
-		<a href="bocetos.html">Bocetos </a>, 
-		<a href="miembros.html">Miembros </a>, 
-		<a href="planificacion.html">Planificación </a>
+		<a href="index.html"> Índice, </a> 
+		<a href="detalles.html">Detalles, </a>
+		<a href="bocetos.html">Bocetos, </a> 
+		<a href="miembros.html">Miembros, </a>
+		<a href="planificacion.html">Planificación, </a>
 		<a href="contacto.html">Contacto </a> 
 		
 		<div class="container">
-			<form action="actionFormularioContacto.php" id="formularioContacto">
+			<form action="mailto:servitrade@gmail.com" method="post" enctype="text/plain" id="formularioContacto">
 
 				<label for="nombre">Nombre:</label>
-				<input type="text" id="nombre" name="nombre" placeholder="Nombre">
+				<input type="text" id="nombre" name="name" placeholder="Nombre">
 				<br/>
 				<label for="apellido">Apellido:</label>
-				<input type="text" id="apellido" name="apellido" placeholder="Apellido">
+				<input type="text" id="apellido" name="surname" placeholder="Apellido">
 				<br/>
 				<label for="email">Dirección de email:</label>
-				<input type="text" id="email" name="email" placeholder="Email">
+				<input type="text" id="email" name="mail" placeholder="Email">
 				<br/>
 				<p>Motivo de la consulta:</p>
 				<div>
-					<input type="radio" id="radioButtonOp" name="radioButtonOp" value="evaluacionRadioB"
+					<input type="radio" id="radioButtonOp"name="subject" value="Evaluación"
 							checked>
 					<label for="evaluacion">Evaluación</label>
 				</div>
 
 				<div>
-					<input type="radio" id="radioButtonOp" name="radioButtonOp" value="sugerenciasRadioB">
+					<input type="radio" id="radioButtonOp1" name="subject" value="Sugerencias">
 					<label for="sugerencias">Sugerencias</label>
 				</div>
 
 				<div>
-					<input type="radio" id="radioButtonOp" name="radioButtonOp" value="criticasRadioB">
+					<input type="radio" id="radioButtonOp2" name="subject" value="Críticas">
 					<label for="criticas">Críticas</label>
 				</div>
 				<br/>
@@ -46,12 +46,11 @@
 				<br/>
 
 				<label for="subject">Consulta</label>
-				<textarea id="subject" name="subject" placeholder="Escribe tu consulta.." style="height:200px"></textarea>
+				<textarea id="subject" name="comment" placeholder="Escribe tu consulta.." style="height:200px"></textarea>
 				<br/>
 				<input type="submit" value="Envíar">
 		
 		  </form>
-		</div>
-			
+		</div>		
 	</body>
 </html>
