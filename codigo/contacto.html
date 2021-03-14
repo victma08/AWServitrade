@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang = "es">
 	<head>
 		<meta charset='utf-8'>
 		<title> Contacto </title>
@@ -16,36 +16,36 @@
 		<div class="container">
 			<form action="mailto:servitrade@gmail.com" method="post" enctype="text/plain" id="formularioContacto" accept-charset="utf-8">
 
-				<label for="nombre">Nombre:</label>
+				<label for="nombre" id="nombre">Nombre:</label>
 				<input type="text" id="nombre" name="name" placeholder="Nombre">
 				<br/>
-				<label for="apellido">Apellido:</label>
+				<label for="apellido" id="apellido">Apellido:</label>
 				<input type="text" id="apellido" name="surname" placeholder="Apellido">
 				<br/>
-				<label for="email">Dirección de email:</label>
+				<label for="email" id="email">Dirección de email:</label>
 				<input type="text" id="email" name="mail" placeholder="Email">
 				<br/>
 				<p>Motivo de la consulta:</p>
 				<div>
-					<input type="radio" id="radioButtonOp"name="subject" value="Evaluacion"
+					<input type="radio" id="radioButtonOp" name="subject" value="Evaluacion"
 							checked>
-					<label for="evaluacion">Evaluación</label>
+					<label for="evaluacion" id="evaluacion">Evaluación</label>
 				</div>
 
 				<div>
 					<input type="radio" id="radioButtonOp1" name="subject" value="Sugerencias">
-					<label for="sugerencias">Sugerencias</label>
+					<label for="sugerencias" id="sugerencias">Sugerencias</label>
 				</div>
 
 				<div>
 					<input type="radio" id="radioButtonOp2" name="subject" value="Criticas">
-					<label for="criticas">Críticas</label>
+					<label for="criticas" id="criticas" >Críticas</label>
 				</div>
 				<br/>
-				<label for="terminosCondiciones">Marque esta casilla para verificar que ha leído nuestros términos y condiciones del servicio <input type="checkbox" id="cbox1" value="first_checkbox"></label>
+				<label for="terminosCondiciones" id="terminosCondiciones">Marque esta casilla para verificar que ha leído nuestros términos y condiciones del servicio <input type="checkbox" id="cbox1" value="first_checkbox"></label>
 				<br/>
 
-				<label for="subject">Consulta</label>
+				<label for="subject" id="subject">Consulta</label>
 				<textarea id="subject" name="comment" placeholder="Escribe tu consulta.." style="height:200px"></textarea>
 				<br/>
 				<input type="submit" value="Envíar">
