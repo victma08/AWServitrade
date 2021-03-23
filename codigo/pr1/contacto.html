@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang = "es">
+	<head>
+		<meta charset='utf-8'>
+		<title> Contacto </title>
+	</head>
+	<body>
+		<h1>Contacto</h1>
+		<a href="index.html"> Índice, </a> 
+		<a href="detalles.html">Detalles, </a>
+		<a href="bocetos.html">Bocetos, </a> 
+		<a href="miembros.html">Miembros, </a>
+		<a href="planificacion.html">Planificación, </a>
+		<a href="contacto.html">Contacto </a> 
+		
+		<div class="container">
+			<form action="mailto:servitrade@gmail.com" method="post" enctype="text/plain" id="formularioContacto" accept-charset="utf-8">
+
+				<label  id="labelNombre">Nombre:</label>
+				<input type="text" id="name" name="name" placeholder="Nombre">
+				<br/>
+				<label  id="apellido">Apellido:</label>
+				<input type="text" id="surname" name="surname" placeholder="Apellido">
+				<br/>
+				<label  id="email">Dirección de email:</label>
+				<input type="text" id="mail" name="mail" placeholder="Email">
+				<br/>
+				<p>Motivo de la consulta:</p>
+				<div>
+					<input type="radio" id="radioEvaluacion" name="subject" value="Evaluacion"
+							checked>
+					<label id="evaluacion">Evaluación</label>
+				</div>
+
+				<div>
+					<input type="radio" id="radioSugerencias" name="subject" value="Sugerencias">
+					<label  id="sugerencias">Sugerencias</label>
+				</div>
+
+				<div>
+					<input type="radio" id="radioCriticas" name="subject" value="Criticas">
+					<label  id="criticas" >Críticas</label>
+				</div>
+				<br/>
+				<label  id="terminosCondiciones">Marque esta casilla para verificar que ha leído nuestros términos y condiciones del servicio <input type="checkbox" id="cbox1" value="first_checkbox">Términos y Condiciones</label>
+				<br/>
+
+				<label id="subjectLabel">Consulta</label>
+				<textarea id="subject" name="comment" placeholder="Escribe tu consulta.." style="height:200px"></textarea>
+				<br/>
+				<input type="submit" value="Envíar">
+		
+		  </form>
+		</div>		
+	</body>
+</html>
