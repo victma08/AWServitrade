@@ -1,0 +1,112 @@
+--ENTIDADES
+CREATE TABLE PERSONA(
+    NIF                 VARCHAR2(9)         NOT NULL,
+    NOMBRE              VARCHAR2(50 CHAR)  	NOT NULL,
+    APELLIDO1           VARCHAR2(50 CHAR)  	NOT NULL,
+    APELLIDO2           VARCHAR2(50 CHAR)  	NOT NULL,
+    SEXO                VARCHAR2(1 CHAR)  	NOT NULL,
+    FECHA_NACIMIENTO    DATE                NULL,			   	
+    PAIS                VARCHAR2(50 CHAR)  	NOT NULL,
+    CIUDAD              VARCHAR2(50 CHAR)   NOT NULL,
+    CALLE               VARCHAR2(75 CHAR)  	NOT NULL,
+    NUMERO_CALLE        VARCHAR2(10 CHAR)   NULL,
+    PORTAL 				VARCHAR2(6 CHAR)   	NULL,
+    PISO 				VARCHAR2(12 CHAR)  	NULL,
+    PUERTA 				VARCHAR2(10 CHAR)   NULL,
+    CODIGO_POSTAL 		VARCHAR2(5 CHAR)   	NOT NULL
+);
+CREATE TABLE USUARIO(
+    EMAIL               VARCHAR2(100 CHAR) 	NOT NULL,
+    CONTRASENA      	VARCHAR2(20 CHAR) 	NOT NULL,
+    TELEFONO            NUMBER(9) 		   	NOT NULL,
+    IMAGEN              
+    DESCRIPCION         VARCHAR2(250 CHAR)  NULL,
+    DISPONIBILIDAD      NUMBER(10)          NOT NULL,
+    SERVICIO_OFERTADO   NUMBER(10)          NULL,
+    CARTERA             NUMBER(10)          NOT NULL,
+    NIF                 VARCHAR2(9)         NOT NULL,
+    FECHA_CREACION      DATE                NOT NULL
+);  
+CREATE TABLE SERVICIO(
+    ID                  NUMBER(10)          NOT NULL,
+    TITULO              VARCHAR2(250 CHAR)  NOT NULL,
+    COSTE               NUMBER(10)			NOT NULL,
+    CATEGORIA_SERVICIOS NUMBER(10)          NOT NULL,
+    DESCRIPCION         VARCHAR2(250 CHAR)  NOT NULL,
+    IMAGEN
+);
+CREATE TABLE FORO(
+    ID                      NUMBER(10)          NOT NULL,
+    CATEGORIA_FOROS         NUMBER(10)          NOT NULL,  
+);
+CREATE TABLE HILO(
+    ID                      NUMBER(10)          NOT NULL,
+    USUARIO_CREADOR         VARCHAR2(100 CHAR) 	NOT NULL,
+    FECHA_CREACION          DATE                NOT NULL
+);
+CREATE TABLE CARTERA(
+    ID                      NUMBER(10)          NOT NULL,
+    USUARIO                 VARCHAR2(100 CHAR) 	NOT NULL,
+    SALDO
+);
+CREATE TABLE RESENA(
+    USUARIO_CREADOR         VARCHAR2(100 CHAR) 	NOT NULL,
+    USUARIO_VALORADO        VARCHAR2(100 CHAR) 	NOT NULL,
+    PUNTUACION              NUMBER(1)          NOT NULL,
+    COMENTARIO              VARCHAR2(300 CHAR)  NOT NULL,
+    FECHA_VALORACION        DATE                NOT NULL
+);
+CREATE TABLE MENSAJES(
+    USUARIO_REMITENTE       VARCHAR2(100 CHAR) 	NOT NULL,
+    USUARIO_DESTINATARIO    VARCHAR2(100 CHAR) 	NOT NULL,
+    CONTENIDO
+    FECHA_ENVIO             DATE                NOT NULL,
+    FECHA_RECEPCION         DATE                NOT NULL
+);
+
+CREATE TABLE DISPONIBILIDAD_USUARIO(
+    ID              NUMBER(10)          NOT NULL,
+    FECHA_INICIO    DATE                NOT NULL,
+    FECHA_FIN       DATE                NOT NULL,
+    USUARIO         VARCHAR2(100 CHAR) 	NOT NULL,
+);
+
+--RELACIONES
+CREATE TABLE COMENTARIOS_HILO(
+    HILO                        NUMBER(10)          NOT NULL,
+    CONTENIDO
+    USUARIO_CREADOR             VARCHAR2(100 CHAR) 	NOT NULL,
+    FECHA_CREACION              DATE                NOT NULL
+);
+CREATE TABLE SERVICIOS_CONTRATADOS(
+    USUARIO                     VARCHAR2(100 CHAR) 	NOT NULL,
+    SERVICIO                    NUMBER(10)          NOT NULL,
+    FECHA_CONTRATACION          DATE                NOT NULL
+);
+CREATE TABLE SERVICIOS_FAVORITOS(
+    USUARIO                     VARCHAR2(100 CHAR) 	NOT NULL,
+    SERVICIO                    NUMBER(10)          NOT NULL
+);
+CREATE TABLE SERVICIOS_REALIZADOS(
+    USUARIO                     VARCHAR2(100 CHAR) 	NOT NULL,
+    SERVICIO                    NUMBER(10)          NOT NULL,
+    FECHA_REALIZACION           DATE                NOT NULL
+);
+CREATE TABLE SERVICIOS_SOLICITADOS(
+    USUARIO                     VARCHAR2(100 CHAR) 	NOT NULL,
+    SERVICIO                    NUMBER(10)          NOT NULL,
+    FECHA_SOLICITUD             DATE                NOT NULL
+);
+
+CREATE TABLE CATEGORIA_SERVICIOS(
+    ID                          NUMBER(10)          NOT NULL,
+    NOMBRE                      VARCHAR2(50 CHAR)  	NOT NULL,
+);
+
+
+CREATE TABLE CATEGORIA_FOROS(
+    ID                          NUMBER(10)          NOT NULL,
+    NOMBRE                      VARCHAR2(50 CHAR)  	NOT NULL,
+);
+--CONSTRAINTS
+ALTER TABLE PERSONA ADD CONSTRAINT PERSONA_PF   PRIMARY KEY (NIF);
