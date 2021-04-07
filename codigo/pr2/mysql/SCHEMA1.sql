@@ -92,34 +92,34 @@ CREATE TABLE DISPONIBILIDAD_USUARIO(
     ID              NUMBER(10)          NOT NULL,
     FECHA           DATE                NOT NULL,
  -- FECHA_FIN       DATE                NOT NULL,
-    USUARIO         VARCHAR2(100 CHAR) 	NOT NULL
+    USUARIO         NUMBER(10)          NOT NULL
 );
 
 --RELACIONES
 
 CREATE TABLE SERVICIOS_CONTRATADOS(
     ID                          NUMBER(10)          NOT NULL,
-    USUARIO_CONTRATADOR         VARCHAR2(100 CHAR) 	NOT NULL,
+    USUARIO_CONTRATADOR         NUMBER(10)          NOT NULL,
     SERVICIO                    NUMBER(10)          NOT NULL,
     FECHA_CONTRATACION          DATE                NOT NULL
 );
 --DEFINIR SI SE QUIEREN UNIFICAR AMBAS TABLAS
 CREATE TABLE SERVICIOS_REALIZADOS(
     ID                          NUMBER(10)          NOT NULL,
-    USUARIO                     VARCHAR2(100 CHAR) 	NOT NULL, --El que ofrece el servicio
+    USUARIO                     NUMBER(10)          NOT NULL, --El que ofrece el servicio
     SERVICIO                    NUMBER(10)          NOT NULL,
     FECHA_REALIZACION           DATE                NOT NULL
 );
 
 CREATE TABLE SERVICIOS_FAVORITOS(
     ID                          NUMBER(10)          NOT NULL,
-    USUARIO                     VARCHAR2(100 CHAR) 	NOT NULL,
+    USUARIO                     NUMBER(10)          NOT NULL,
     SERVICIO                    NUMBER(10)          NOT NULL
 );
 
 CREATE TABLE SERVICIOS_SOLICITADOS(
     ID                          NUMBER(10)          NOT NULL,
-    USUARIO                     VARCHAR2(100 CHAR) 	NOT NULL,
+    USUARIO                     NUMBER(10)          NOT NULL,
     SERVICIO                    NUMBER(10)          NOT NULL,
     FECHA_SOLICITUD             DATE                NOT NULL
     --SE PUEDE AGREGAR EL USUARIO SOLICITADO
