@@ -1,9 +1,9 @@
 <?php
-use Aw\Servitrade;
+use es\ucm\fdi\aw as aplicacion;
 
 function mostrarSaludo() {
   $html = '';
-  $app = Servitrade\Aplicacion::getSingleton();
+  $app = aplicacion\Aplicacion::getSingleton();
   if ($app->usuarioLogueado()) {
     $nombreUsuario = $app->nombreUsuario();
     $logoutUrl = $app->resuelve('/logout.php');

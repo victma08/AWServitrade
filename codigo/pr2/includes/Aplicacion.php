@@ -1,6 +1,6 @@
 <?php
 
-namespace Aw\Servitrade;
+namespace es\ucm\fdi\aw;
 
 class Aplicacion
 {
