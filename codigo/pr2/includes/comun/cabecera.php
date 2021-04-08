@@ -1,9 +1,9 @@
 <?php
-use es\ucm\fdi\aw as aplicacion;
+use Aw\Servitrade\Aplicacion;
 
 function mostrarSaludo() {
   $html = '';
-  $app = aplicacion\Aplicacion::getSingleton();
+  $app = Aplicacion::getSingleton();
   if ($app->usuarioLogueado()) {
     $nombreUsuario = $app->nombreUsuario();
     $logoutUrl = $app->resuelve('/logout.php');

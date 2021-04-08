@@ -1,7 +1,7 @@
 <?php
-use es\ucm\fdi\aw;
+use Aw\Servitrade\Aplicacion;
 
-$app = aw\Aplicacion::getSingleton();
+$app = Aplicacion::getSingleton();
 ?>
 
 <div id="sidebar-left">
