@@ -16,89 +16,134 @@ DROP TABLE IF EXISTS CATEGORIA_SERVICIOS;
 
 /*ENTIDADES*/
 CREATE TABLE PERSONA(
-    NIF                 VARCHAR(9)         NOT NULL,
+    NIF                 VARCHAR(9)      NOT NULL,
     NOMBRE              VARCHAR(50)  	NOT NULL,
     APELLIDO1           VARCHAR(50)  	NOT NULL,
     APELLIDO2           VARCHAR(50)  	NOT NULL,
     SEXO                VARCHAR(1)  	NULL,
-    FECHA_NACIMIENTO    DATE                NULL,			   	
+    FECHA_NACIMIENTO    DATE            NULL,			   	
     PAIS                VARCHAR(50)  	NOT NULL,
-    CIUDAD              VARCHAR(50)   NOT NULL,
+    CIUDAD              VARCHAR(50)     NOT NULL,
     CALLE               VARCHAR(75)  	NOT NULL,
-    NUMERO_CALLE        VARCHAR(10)   NULL,
+    NUMERO_CALLE        VARCHAR(10)     NULL,
     PORTAL 				VARCHAR(6)   	NULL,
     PISO 				VARCHAR(12)  	NULL,
-    PUERTA 				VARCHAR(10)   NULL,
+    PUERTA 				VARCHAR(10)     NULL,
     CODIGO_POSTAL 		VARCHAR(5)   	NOT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE USUARIO(
-    ID                  INT          NOT NULL,
-    NIF                 VARCHAR(9)         NOT NULL,
+    ID                  INT             NOT NULL,
+    NIF                 VARCHAR(9)      NOT NULL,
     EMAIL               VARCHAR(100) 	NOT NULL,
     CONTRASENA      	VARCHAR(20) 	NOT NULL,
     TELEFONO            INT 		   	NOT NULL,
-    /*IMAGEN              varbinary,*/
-    DESCRIPCION         VARCHAR(250)  NULL,
-    DISPONIBILIDAD      INT          NOT NULL, /*POR DEFINIR*/
-    SERVICIO_OFERTADO   INT          NULL,
-    MONEDERO            INT          NOT NULL,
-    FECHA_CREACION      DATE                NOT NULL
+    /*IMAGEN            varbinary,*/
+    DESCRIPCION         VARCHAR(250)    NULL,
+    DISPONIBILIDAD      INT             NOT NULL, /*POR DEFINIR*/
+    SERVICIO_OFERTADO   INT             NULL,
+    MONEDERO            INT             NOT NULL,
+    FECHA_CREACION      DATE            NOT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE SERVICIO(
-    ID                  INT          NOT NULL,
-    TITULO              VARCHAR(250)  NOT NULL,
-    COSTE               INT			NOT NULL,
-    CATEGORIA_SERVICIOS INT          NOT NULL,
-    DESCRIPCION         VARCHAR(250)  NOT NULL
+    ID                  INT             NOT NULL,
+    TITULO              VARCHAR(250)    NOT NULL,
+    COSTE               INT			    NOT NULL,
+    CATEGORIA_SERVICIOS INT             NOT NULL,
+    DESCRIPCION         VARCHAR(250)    NOT NULL
     /*IMAGEN              varbinary*/
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Tema libre (Se puede modificar)*/
 CREATE TABLE FORO(
-    ID                      INT          NOT NULL,
-    TEMA_FOROS              INT          NOT NULL,/*CLAVE DE TABLA CATEGORIA_SERVICIOS*/
-    ASUNTO                  VARCHAR(100) 	NOT NULL  
+    ID                  INT             NOT NULL,
+    TEMA_FOROS          INT             NOT NULL,/*CLAVE DE TABLA CATEGORIA_SERVICIOS*/
+    ASUNTO              VARCHAR(100)    NOT NULL  
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-/*CREATE TABLE HILO(
-    ID                      INT          NOT NULL,
-    USUARIO_CREADOR         VARCHAR(100) 	NOT NULL,
-    FECHA_CREACION          DATE                NOT NULL
-);*/
 CREATE TABLE COMENTARIOS_FORO(
-    ID                         INT          NOT NULL,
-    ID_MENSAJE_PADRE            INT          NULL,
-    FORO                        INT          NOT NULL,
-    CONTENIDO                   VARCHAR(300) 	NOT NULL,
-    USUARIO_CREADOR             INT          NOT NULL,
-    FECHA_CREACION              DATE                NOT NULL
+    ID                  INT             NOT NULL,
+    ID_MENSAJE_PADRE    INT             NULL,
+    FORO                INT             NOT NULL,
+    CONTENIDO           VARCHAR(300)    NOT NULL,
+    USUARIO_CREADOR     INT             NOT NULL,
+    FECHA_CREACION      DATE            NOT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE MONEDERO(
-    ID                      INT          NOT NULL,
-    USUARIO                 INT          NOT NULL,
-    SALDO                   INT         NOT NULL
+    ID                 INT              NOT NULL,
+    USUARIO            INT              NOT NULL,
+    SALDO              INT              NOT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE RESENA(
-    ID                      INT          NOT NULL,
-    USUARIO_CREADOR         INT          NOT NULL,
-    USUARIO_VALORADO        INT          NOT NULL,
-    PUNTUACION              INT           NOT NULL,
-    COMENTARIO              VARCHAR(300)  NOT NULL,
-    FECHA_VALORACION        DATE                NOT NULL
+    ID                 INT              NOT NULL,
+    USUARIO_CREADOR    INT              NOT NULL,
+    USUARIO_VALORADO   INT              NOT NULL,
+    PUNTUACION         INT              NOT NULL,
+    COMENTARIO         VARCHAR(300)     NOT NULL,
+    FECHA_VALORACION   DATE             NOT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE MENSAJES(
-    ID                      INT          NOT NULL,
-    USUARIO_REMITENTE       INT          NOT NULL,
-    USUARIO_DESTINATARIO    INT          NOT NULL,
-    CONTENIDO               VARCHAR(300) 	NOT NULL,
-    FECHA_ENVIO             DATE                NOT NULL,
-    FECHA_RECEPCION         DATE                NULL
+    ID                 INT              NOT NULL,
+    USUARIO_REMITENTE  INT              NOT NULL,
+    USUARIO_DESTINATARIO  INT           NOT NULL,
+    CONTENIDO          VARCHAR(300)     NOT NULL,
+    FECHA_ENVIO        DATE             NOT NULL,
+    FECHA_RECEPCION    DATE             NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+/*POR DEFINIR*/
+CREATE TABLE DISPONIBILIDAD_USUARIO(
+    ID                 INT              NOT NULL,
+    FECHA              DATE             NOT NULL,
+    /*FECHA_FIN       DATE                NOT NULL,*/
+    USUARIO            INT              NOT NULL
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+/*RELACIONES*/
+
+CREATE TABLE SERVICIOS_CONTRATADOS(
+    ID                   INT            NOT NULL,
+    USUARIO_CONTRATADOR  INT            NOT NULL,
+    SERVICIO             INT            NOT NULL,
+    FECHA_CONTRATACION   DATE           NOT NULL
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+/*DEFINIR SI SE QUIEREN UNIFICAR AMBAS TABLAS*/
+CREATE TABLE SERVICIOS_REALIZADOS(
+    ID                  INT             NOT NULL,
+    USUARIO             INT             NOT NULL, /*El que ofrece el servicio*/
+    SERVICIO            INT             NOT NULL,
+    FECHA_REALIZACION   DATE            NOT NULL
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE SERVICIOS_FAVORITOS(
+ID                          INT          NOT NULL,
+USUARIO                     INT          NOT NULL,
+SERVICIO                    INT          NOT NULL
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE SERVICIOS_SOLICITADOS(
+ID                          INT          NOT NULL,
+USUARIO                     INT          NOT NULL,
+SERVICIO                    INT          NOT NULL,
+FECHA_SOLICITUD             DATE         NOT NULL
+/*SE PUEDE AGREGAR EL USUARIO SOLICITADO*/
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE CATEGORIA_SERVICIOS(
+ID                          INT          NOT NULL,
+NOMBRE                      VARCHAR(50)  NOT NULL
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+/*CREATE TABLE CATEGORIA_FOROS(
+   ID                          INT          NOT NULL,
+   NOMBRE                      VARCHAR(50 CHAR)  	NOT NULL,
+);*/
 
 /*CREATE TABLE IF NOT EXISTS `Mensajes` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -111,54 +156,10 @@ CREATE TABLE MENSAJES(
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4;
 */
 
-/*POR DEFINIR*/
-CREATE TABLE DISPONIBILIDAD_USUARIO(
-    ID              INT          NOT NULL,
-    FECHA           DATE                NOT NULL,
-    /*FECHA_FIN       DATE                NOT NULL,*/
-    USUARIO         INT          NOT NULL
-)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-/*RELACIONES*/
-
-CREATE TABLE SERVICIOS_CONTRATADOS(
-    ID                          INT          NOT NULL,
-    USUARIO_CONTRATADOR         INT          NOT NULL,
-    SERVICIO                    INT          NOT NULL,
-    FECHA_CONTRATACION          DATE                NOT NULL
-)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-/*DEFINIR SI SE QUIEREN UNIFICAR AMBAS TABLAS*/
-CREATE TABLE SERVICIOS_REALIZADOS(
-    ID                          INT          NOT NULL,
-    USUARIO                     INT          NOT NULL, /*El que ofrece el servicio*/
-    SERVICIO                    INT          NOT NULL,
-    FECHA_REALIZACION           DATE                NOT NULL
-)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-CREATE TABLE SERVICIOS_FAVORITOS(
-    ID                          INT          NOT NULL,
-    USUARIO                     INT         NOT NULL,
-    SERVICIO                    INT          NOT NULL
-)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-CREATE TABLE SERVICIOS_SOLICITADOS(
-    ID                          INT          NOT NULL,
-    USUARIO                     INT          NOT NULL,
-    SERVICIO                    INT          NOT NULL,
-    FECHA_SOLICITUD             DATE                NOT NULL
-    /*SE PUEDE AGREGAR EL USUARIO SOLICITADO*/
-)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-CREATE TABLE CATEGORIA_SERVICIOS(
-    ID                          INT          NOT NULL,
-    NOMBRE                      VARCHAR(50)  	NOT NULL
-)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-
-/*CREATE TABLE CATEGORIA_FOROS(
-   ID                          INT          NOT NULL,
-   NOMBRE                      VARCHAR(50 CHAR)  	NOT NULL,
+/*CREATE TABLE HILO(
+    ID                      INT          NOT NULL,
+    USUARIO_CREADOR         VARCHAR(100) 	NOT NULL,
+    FECHA_CREACION          DATE                NOT NULL
 );*/
 
 /*CONSTRAINTS*/
