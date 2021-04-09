@@ -26,6 +26,7 @@ class Aplicacion
   private function __construct()
   {
   }
+  
   /**
    * Evita que se pueda utilizar el operador clone.
    */
