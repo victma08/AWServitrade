@@ -1,7 +1,7 @@
 <?php
-use Aw\Servitrade\Aplicacion;
+use aw\servitrade as aplicacion;
 
-$app = Aplicacion::getSingleton();
+$app = aplicacion\Aplicacion::getSingleton();
 ?>
 
 <div id="sidebar-left">

@@ -48,7 +48,7 @@ date_default_timezone_set('Europe/Madrid');
 spl_autoload_register(function ($class) {
 
     // project-specific namespace prefix
-    $prefix = 'es\\ucm\\fdi\\aw\\';
+    $prefix = 'aw\\servitrade';
 
     // base directory for the namespace prefix
     $base_dir = __DIR__ . '/';
@@ -76,5 +76,5 @@ spl_autoload_register(function ($class) {
 /* */
 /* Inicialización del objeto aplicacion */
 /* */
-$app = \es\ucm\fdi\aw\Aplicacion::getSingleton();
+$app = \aw\servitrade\Aplicacion::getSingleton();
 $app->init(array('host'=>BD_HOST, 'bd'=>BD_NAME, 'user'=>BD_USER, 'pass'=>BD_PASS), RUTA_APP, RAIZ_APP);
