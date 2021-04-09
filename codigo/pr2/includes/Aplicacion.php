@@ -1,6 +1,6 @@
 <?php
 
-namespace es\ucm\fdi\aw;
+namespace aw\servitrade;
 
 class Aplicacion
 {

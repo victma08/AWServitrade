@@ -1,9 +1,9 @@
 <?php
-use Aw\Servitrade\Aplicacion;
+use aw\servitrade as aplicacion;
 
 function mostrarSaludo() {
   $html = '';
-  $app = Aplicacion::getSingleton();
+  $app = aplicacion\Aplicacion::getSingleton();
   if ($app->usuarioLogueado()) {
     $nombreUsuario = $app->nombreUsuario();
     $logoutUrl = $app->resuelve('/logout.php');
