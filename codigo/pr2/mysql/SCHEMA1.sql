@@ -64,7 +64,7 @@ CREATE TABLE FORO(
 
 CREATE TABLE COMENTARIOS_FORO(
     ID                  INT             NOT NULL,
-    ID_MENSAJE_PADRE    INT             NULL,
+   -- ID_MENSAJE_PADRE    INT             NULL,
     FORO                INT             NOT NULL,
     CONTENIDO           VARCHAR(300)    NOT NULL,
     USUARIO_CREADOR     INT             NOT NULL,

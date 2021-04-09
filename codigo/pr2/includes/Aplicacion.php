@@ -116,6 +116,15 @@ class Aplicacion
     return ($_SESSION['login'] ?? false) === true;
   }
 
+  public function esAdmin($rol)
+  {
+	  $roles = $_SESSION['roles'] ?? array();
+    if (! in_array($rol, $roles)) {
+		  return false;
+	  }
+	  return true;
+  }
+  
   public function nombreUsuario()
   {
     return $_SESSION['nombre'] ?? '';
