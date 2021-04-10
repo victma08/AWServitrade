@@ -1,9 +1,9 @@
 <?php
 //Objeto y Acceso a la BBDD
 
-namespace Aw\Servitrade;
+namespace aw\servitrade;
 
-use Aw\Servitrade\Aplicacion;
+use aw\servitrade\Aplicacion;
 
 class MensajeForo
 {

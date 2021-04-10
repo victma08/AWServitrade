@@ -1,10 +1,11 @@
 <?php
     require_once __DIR__.'/includes/config.php';
+    require_once __DIR__.'/includes/Objetos/Foro.php';
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-   
+    <link rel="stylesheet" type="text/css" href="<?= $app->resuelve('/css/styles.css') ?>" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>Portada</title>
 </head>
@@ -20,8 +21,9 @@
         
             <?php
                 if($app->usuarioLogueado()){
-
-                    echo Aw\Servitrade\Foro::mostrarTodos();
+            
+				echo Foro::mostrarTodos();
+                
             ?>
                 <form>
                     <!--vista de crear un foro-->
@@ -40,7 +42,7 @@
                 </form>
             <?php
                 }
-		        } //cierre del if de usuario logueado
+		    } //cierre del if de usuario logueado
             ?>      
 
     </div> <!-- Fin del contenido -->

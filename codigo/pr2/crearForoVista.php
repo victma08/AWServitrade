@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-   
+    <link rel="stylesheet" type="text/css" href="<?= $app->resuelve('/css/styles.css') ?>" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>Portada</title>
 </head>
@@ -19,7 +19,7 @@
     <div id="contenido">
 
      <h1>Crear un foro</h1>
-            <form action="/includes/procesarCrearForo.php" method="POST">
+            <form id="formForo" action="/includes/procesarCrearForo.php" method="POST">
             <fieldset>
             <legend>Escriba un tema y asunto para un foro</legend>
             <p><label>Tema:</label> <input type="text" name="tema" /></p>

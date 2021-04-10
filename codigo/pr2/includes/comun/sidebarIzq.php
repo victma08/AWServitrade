@@ -8,8 +8,7 @@ $app = aplicacion\Aplicacion::getSingleton();
 	<h3>Navegación</h3>
 	<ul>
 		<li><a href="<?= $app->resuelve('/index.php')?>">Inicio</a></li>
-		<li><a href="<?= $app->resuelve('/contenido.php')?>">Ver contenido</a></li>
-		<li><a href="<?= $app->resuelve('/admin.php')?>">Administrar</a></li>
+		<li><a href="<?= $app->resuelve('/ForoVista.php')?>">Foro</a></li>
 		<li><a href="<?= $app->resuelve('/mensajes.php')?>">Mensajes</a></li>
 	</ul>
 </div>

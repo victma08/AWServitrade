@@ -20,13 +20,6 @@ function mostrarSaludo() {
 <div id="cabecera">
 	<h1>Servitrade</h1>
 	<div class="saludo">
-  <nav class="menu">
-      <ul>
-          <li><a href="<?= $app->resuelve('/index.php')?>">Inicio</a></li> <!--servicios-->
-          <li><a href="<?= $app->resuelve('/Foro_Vista.php')?>">Foro</a></li>
-          <li><a href="<?= $app->resuelve('/Mensaje_Vista.php')?>">Mensajes</a></li>
-      </ul>
-    </nav>
 	  <?=	mostrarSaludo() ?>
 	</div>
 </div>

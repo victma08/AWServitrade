@@ -1,9 +1,9 @@
 <?php
 //Objeto y Acceso a la BBDD
 
-namespace Aw\Servitrade;
+namespace aw\servitrade;
 
-use Aw\Servitrade\Aplicacion;
+use aw\servitrade\Aplicacion;
 
 class Foro
 {
@@ -18,13 +18,12 @@ class Foro
 		$this->tema = $tema;
 		$this->asunto = $asunto;
 	}
-
-	public static function getID() : int {
+	public static function getID() : {
 
 		return $id;
 	}
 
-	public static function getTema(): int  {
+	public static function getTema():   {
 
 		return $tema;
 	}
@@ -73,7 +72,7 @@ class Foro
 	}
 
 	//para mostrar el título de todos los foros
-	public static function mostrarTodos($id) {
+	public static function mostrarTodos() {
 	
 		$app = Aplicacion::getSingleton();
 		$conn = $app->conexionBd();
@@ -90,7 +89,7 @@ class Foro
 		}
 		$html= <<<EOF
 		$texto
-	EOF;
+		EOF;
 		  $rs->free();
 		  return $html;
 	}
@@ -102,8 +101,9 @@ class Foro
 		$app = Aplicacion::getSingleton();
 		$connex = $app->conexionBd();
 		
-		$query=sprintf("INSERT INTO FORO(ID, TEMA_FOROS, ASUNTO) VALUES(NULL,'%s', '%s')"
-			, $connex->real_escape_string($id)
+		//falta enlazar el tema_foros con el id de la tabla categoria servicios
+		$query=sprintf("INSERT INTO FORO(ID, TEMA_FOROS, ASUNTO) VALUES(NULL, '%s', '%s')"
+			//, $connex->real_escape_string()
 			, $connex->real_escape_string($tema)
 			, $connex->real_escape_string($asunto));
 
@@ -149,4 +149,11 @@ class Foro
 	  }
 		return true;
 	}
+
+	public static function crea($tema, $asunto){
+		$foro = new Foro(NULL, $tema, $asunto);
+  
+		return $foro;
+	}
+	
 }
