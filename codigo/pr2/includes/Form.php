@@ -1,6 +1,6 @@
 <?php
 
-namespace Aw\Servitrade;
+namespace aw\servitrade;
 
 /**
  * Clase de  de gestión de formularios.

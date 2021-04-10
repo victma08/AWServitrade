@@ -1,8 +1,8 @@
 <?php
 
-namespace Aw\Servitrade;
+namespace aw\servitrade;
 
-use Aw\Servitrade\Aplicacion as App;
+use aw\servitrade\Aplicacion as App;
 
 class Usuario
 {
