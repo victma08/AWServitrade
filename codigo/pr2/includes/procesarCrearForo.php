@@ -1,7 +1,7 @@
 <?php
 
 require_once __DIR__.'/includes/config.php';
-require_once __DIR__.'/includes/Foro.php';
+require_once __DIR__.'/includes/Objetos/Foro.php';
 
 $tema = htmlspecialchars(trim(strip_tags($_REQUEST["tema"])));
 $asunto = htmlspecialchars(trim(strip_tags($_REQUEST["asunto"])));

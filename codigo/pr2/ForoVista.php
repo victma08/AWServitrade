@@ -1,6 +1,6 @@
 <?php
     require_once __DIR__.'/includes/config.php';
-    require_once __DIR__.'/includes/Objetos/Foro.php';
+    //require_once __DIR__.'/includes/Objetos/Foro.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -22,7 +22,7 @@
             <?php
                 if($app->usuarioLogueado()){
             
-				echo Foro::mostrarTodos();
+				//echo Foro::mostrarTodos();
                 
             ?>
                 <form>
