@@ -1,41 +1,17 @@
 <?php
     require_once __DIR__.'/includes/config.php';
-?>
-<!DOCTYPE html>
-<html>
-<head>
-    <link rel="stylesheet" type="text/css" href="<?= $app->resuelve('/css/styles.css') ?>" />
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>Portada</title>
-</head>
-
-<body>
-
-<div id="contenedor">
-    <?php
-        $app->doInclude("/comun/cabecera.php");
-        $app->doInclude("/comun/sidebarIzq.php");
-    ?>
-    <div id="contenido">
-
-     <h1>Crear un foro</h1>
-            <form id="formForo" action="/includes/procesarCrearForo.php" method="POST">
+    $tituloPagina = 'Nuevo foro';
+     $contenidoPrincipal =<<<EOS
+            <h1>Crear un foro</h1>
+            <form id="formForo" action="./includes/procesarCrearForo.php" method="POST">
             <fieldset>
             <legend>Escriba un tema y asunto para un foro</legend>
-            <p><label>Tema:</label> <input type="text" name="tema" /></p>
-            <p><label>Asunto:</label> <input type="text" name="asunto" /></p>
-            <p><label>Mensaje:</label> <input type="text" name="contenidoMensaje" /></p>
-            <button type="submit">Crear</button>
+            <div><label>Tema:</label> <input type="text" name="tema" /></div>
+            <div><label>Asunto:</label> <input type="text" name="asunto" /></div>
+            <div><label>Mensaje:</label> <input type="text" name="contenidoMensaje" /></div>
+            <div><button type="submit">Crear</button></div>
             </fieldset>
-            </form>        
+            </form>
+     EOS;
 
-    </div> <!-- Fin del contenido -->
-    <?php
-        $app->doInclude("/comun/sidebarDer.php");
-        $app->doInclude("/comun/pie.php");
-    ?>
-
-</div> <!-- Fin del contenedor -->
-
-</body>
-</html>
+require __DIR__.'/includes/comun/layout.php';

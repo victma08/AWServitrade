@@ -4,11 +4,10 @@ define('BD_HOST', 'localhost');
 define('BD_NAME', 'servitrade');
 define('BD_USER', 'usuario_servitrade');
 define('BD_PASS', 'servi trade1');
-define('RAIZ_APP', __DIR__);
-define('RUTA_APP', '/aw/servitrade/codigo/pr2/');
-define('RUTA_IMGS', RUTA_APP.'img/');
-define('RUTA_CSS', RUTA_APP.'css/');
-define('RUTA_JS', RUTA_APP.'js/');
+define('RUTA_APP', '/aw/servitrade');
+define('RUTA_IMGS', RUTA_APP.'/img');
+define('RUTA_CSS', RUTA_APP.'/css');
+define('RUTA_JS', RUTA_APP.'/js');
 define('INSTALADA', true );
 
 if (! INSTALADA) {
@@ -17,64 +16,58 @@ if (! INSTALADA) {
 }
 
 /* */
-/* Configuración del charset */
+/* Configuración de Codificación */
 /* */
 
-/* Enlaces de interés para el soporte de UTF-8:
- * https://www.toptal.com/php/a-utf-8-primer-for-php-and-mysql
- * https://allseeing-i.com/how-to-setup-your-php-site-to-use-utf8
- * http://www.instantshift.com/2014/10/29/mbstring-and-php/
- * https://stackoverflow.com/questions/6987929/preparing-php-application-to-use-with-utf-8
- * 
- * Una vez configurado hay que asegurarse de especificar la codificación 'UTF-8' en las funciones 
- * que tengan un parámetro charset (en PHP >= 5.6 suelen tomar el valor 'UTF-8' por defecto, 
- * pero en versiones anteriores no) y utilizar las funciones http://php.net/manual/en/book.mbstring.php.
- */
-
-/*
- * Configuración de la codificación de la aplicación
- */
 ini_set('default_charset', 'UTF-8');
 setLocale(LC_ALL, 'es_ES.UTF.8');
 
-// Configuración de la zona horaria por defecto
-date_default_timezone_set('Europe/Madrid');
+/* */
+/* Funciones de gestión de la conexión a la BD */
+/* */
 
-/**
- * Función para autocargar clases PHP.
- *
- * @see http://www.php-fig.org/psr/psr-4/
- */
-spl_autoload_register(function ($class) {
+$BD = null;
 
-    // project-specific namespace prefix
-    $prefix = 'aw\\servitrade';
-
-    // base directory for the namespace prefix
-    $base_dir = __DIR__ . '/';
-
-    // does the class use the namespace prefix?
-    $len = strlen($prefix);
-    if (strncmp($prefix, $class, $len) !== 0) {
-        // no, move to the next registered autoloader
-        return;
+function getConexionBD() {
+  global $BD;
+  if (!$BD) {
+    $BD = new mysqli(BD_HOST, BD_USER, BD_PASS, BD_NAME);
+    if ( $BD->connect_errno ) {
+      echo "Error de conexión a la BD: (" . $BD->connect_errno . ") " . $BD->connect_error;
+      exit();
     }
-
-    // get the relative class name
-    $relative_class = substr($class, $len);
-
-    // replace the namespace prefix with the base directory, replace namespace
-    // separators with directory separators in the relative class name, append
-    // with .php
-    $file = $base_dir . str_replace('\\', '/', $relative_class) . '.php';
-    // if the file exists, require it
-    if (file_exists($file)) {
-        require $file;
+    if ( ! $BD->set_charset("utf8mb4")) {
+      echo "Error al configurar la codificación de la BD: (" . $BD->errno . ") " . $BD->error;
+      exit();
     }
-});
+  }
+  return $BD;
+}
+
+function cierraConexion() {
+  // Sólo hacer uso de global para cerrar la conexion !!
+  global $BD;
+  if ( isset($BD) && ! $BD->connect_errno ) {
+    $BD->close();
+  }
+}
+
+register_shutdown_function('cierraConexion');
+
 
 /* */
-/* Inicialización del objeto aplicacion */
+/* Usuario almacenado en memoria */
 /* */
-$app = \aw\servitrade\Aplicacion::getSingleton();
-$app->init(array('host'=>BD_HOST, 'bd'=>BD_NAME, 'user'=>BD_USER, 'pass'=>BD_PASS), RUTA_APP, RAIZ_APP);
+
+/* XXX Quita este comentario y comenta UsuarioBD.php para proba SOLO la funcionalidad de login del usuario.
+require_once __DIR__.'/UsuarioArray.php';
+*/
+
+/* */
+/* Usuario almacenado en BD */
+/* */
+
+require_once __DIR__.'/Usuario.php';
+
+// Abrimos la sesión por defecto en todas las peticiones
+session_start();

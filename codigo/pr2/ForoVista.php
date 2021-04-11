@@ -1,57 +1,32 @@
 <?php
     require_once __DIR__.'/includes/config.php';
-    //require_once __DIR__.'/includes/Objetos/Foro.php';
-?>
-<!DOCTYPE html>
-<html>
-<head>
-    <link rel="stylesheet" type="text/css" href="<?= $app->resuelve('/css/styles.css') ?>" />
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>Portada</title>
-</head>
+    require_once __DIR__.'/includes/autorizacion.php';
 
-<body>
-
-<div id="contenedor">
-    <?php
-        $app->doInclude("/comun/cabecera.php");
-        $app->doInclude("/comun/sidebarIzq.php");
-    ?>
-    <div id="contenido">
-        
-            <?php
-                if($app->usuarioLogueado()){
+    $tituloPagina = 'Foro';
+    $raizApp = RUTA_APP;
+    $contenidoPrincipal= <<<EOS
+        <h1> Foros </h1>
+    EOS;
+    if(estaLogado()){
+        $contenidoPrincipal .=<<<EOS
             
-				//echo Foro::mostrarTodos();
-                
-            ?>
+        <form  action="./crearForoVista.php" method="POST">
+            <div><button type="submit">Crear</button></div>
+        </form>
+        EOS;
+        /*if(esAdmin()){
+            $contenidoPrincipal .= <<<EOS
                 <form>
                     <!--vista de crear un foro-->
-                    <a href='crearForoVista.php'>Crear foro</a>;
-                    <!--<button type="submit" onclick="location.href='noticiasAdmin.php'">Crear Foro</button> -->
-                    
-                
+                    <a href='eliminarForoVista.php'>Eliminar foro</a>
+                    <button type="submit" onclick="location.href='eliminarForoVista.php'">Eliminar Foro</button> 
                 </form>
-            <?php
-                if ($app->esAdmin("admin")) {
-            ?>        
-                <form>
-                    <!--vista de eliminar un foro-->
-                    <a href='eliminarForoVista.php'>Eliminar foro</a>;
-                    <!--<button type="submit" onclick="location.href='noticiasAdmin.php'">Crear Foro</button> -->
-                </form>
-            <?php
-                }
-		    } //cierre del if de usuario logueado
-            ?>      
+            EOS;
+        }
+        */
+    }
 
-    </div> <!-- Fin del contenido -->
-    <?php
-        $app->doInclude("/comun/sidebarDer.php");
-        $app->doInclude("/comun/pie.php");
-    ?>
 
-</div> <!-- Fin del contenedor -->
-
-</body>
-</html>
+        
+    require __DIR__.'/includes/comun/layout.php';
+?>

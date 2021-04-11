@@ -1,4 +1,3 @@
-	<div id="sidebar-right">
-		
-
-	</div>
+<aside id="sidebarDer">
+	info de usuario
+</aside>

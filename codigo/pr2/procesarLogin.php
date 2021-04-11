@@ -1,20 +1,21 @@
 <?php
 
 require_once __DIR__.'/includes/config.php';
+require_once __DIR__.'/includes/usuarios.php';
 require_once __DIR__.'/includes/autorizacion.php';
 
-$tituloPagina = 'Admin';
+checkLogin();
 
 $contenidoPrincipal='';
-if (! esAdmin()) {
+if (! estaLogado()) {
 	$contenidoPrincipal=<<<EOS
-		<h1>Acceso Denegado!</h1>
-		<p>No tienes permisos suficientes para administrar la web.</p>
+		<h1>Error</h1>
+		<p>El usuario o contraseña no son válidos.</p>
 	EOS;
 } else {
 	$contenidoPrincipal=<<<EOS
-		<h1>Consola de administración</h1>
-		<p>Aquí estarían todos los controles de administración</p>
+		<h1>Bienvenido ${_SESSION['nombre']}</h1>
+		<p>Usa el menú de la izquierda para navegar.</p>
 	EOS;
 } 
 

@@ -1,8 +1,7 @@
 <?php
 
-namespace aw\servitrade;
+require_once __DIR__.'/config.php';
 
-use aw\servitrade\Aplicacion as App;
 
 class Usuario
 {
@@ -11,8 +10,7 @@ class Usuario
   {
     $user = self::buscaUsuario($username);
     if ($user && $user->compruebaPassword($password)) {
-      $app = App::getSingleton();
-      $conn = $app->conexionBd();
+      $conn = getConexionBD();
       $query = sprintf("SELECT R.nombre FROM RolesUsuario RU, Roles R WHERE RU.rol = R.id AND RU.usuario=%s", $conn->real_escape_string($user->id));
       $rs = $conn->query($query);
       if ($rs) {
@@ -28,9 +26,23 @@ class Usuario
 
   public static function buscaUsuario($username)
   {
-    $app = App::getSingleton();
-    $conn = $app->conexionBd();
+    $conn = getConexionBD();
     $query = sprintf("SELECT * FROM Usuarios WHERE username='%s'", $conn->real_escape_string($username));
+    $rs = $conn->query($query);
+    if ($rs && $rs->num_rows == 1) {
+      $fila = $rs->fetch_assoc();
+      $user = new Usuario($fila['id'], $fila['username'], $fila['password']);
+      $rs->free();
+
+      return $user;
+    }
+    return false;
+  }
+
+  public static function buscaPorId($idUsuario)
+  {
+    $conn = getConexionBD();
+    $query = sprintf("SELECT * FROM Usuarios WHERE id=%d", $idUsuario);
     $rs = $conn->query($query);
     if ($rs && $rs->num_rows == 1) {
       $fila = $rs->fetch_assoc();
