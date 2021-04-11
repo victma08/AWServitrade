@@ -8,19 +8,21 @@ $app->logout();
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <!-- <link rel="stylesheet" type="text/css" href="estilo.css" /> -->
+  <link rel="stylesheet" type="text/css" href="<?= $app->resuelve('/css/styles.css') ?>" />
   <title>Logout</title>
 </head>
 <body>
 <div id="contenedor">
 <?php
-require("cabecera.php");
+    $app->doInclude('comun/cabecera.php');
+    $app->doInclude('comun/sidebarIzq.php');
 ?>
 	<div id="contenido">
 		<h1>Hasta pronto!</h1>
 	</div>
 <?php
-require("pie.php"); 
+    $app->doInclude('comun/sidebarDer.php');
+    $app->doInclude('comun/pie.php');
 ?>
 </div>
 </body>
