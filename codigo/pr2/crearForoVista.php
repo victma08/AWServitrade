@@ -1,9 +1,12 @@
 <?php
     require_once __DIR__.'/includes/config.php';
+    
+    //mostrar los foros como en mensajeForoVista
+    
     $tituloPagina = 'Nuevo foro';
      $contenidoPrincipal =<<<EOS
             <h1>Crear un foro</h1>
-            <form id="formForo" action="./includes/procesarCrearForo.php" method="POST">
+            <form id="formForo" action="crearForo.php" method="POST">
             <fieldset>
             <legend>Escriba un tema y asunto para un foro</legend>
             <div><label>Tema:</label> <input type="text" name="tema" /></div>

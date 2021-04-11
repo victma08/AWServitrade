@@ -19,19 +19,19 @@ class MensajeForo
 		$this->fecha = $fecha ?? date('Y-m-d H:i:s');
 	}
 
-	public static function getID() {
+	public function getId() {
 
-		return $id;
+		return $this->id;
 	}
 
-	public static function getIdForo(){
+	public function getIdForo(){
 
-		return $idForo;
+		return $this->idForo;
 	}
 
-	public static function getIdUsuario(){
+	public function getIdUsuario(){
 
-		return $idUsuario;
+		return $this->idUsuario;
 	}
 
     public function getAutor(){
@@ -48,22 +48,22 @@ class MensajeForo
     }
 
     
-	public static function getIdMensajePadre()  {
+	public function getIdMensajePadre()  {
 
-		return $idmensajePadre;
+		return $this->idmensajePadre;
 	}
 
-	public static function getContenido(){
+	public function getContenido(){
 
-		return $contenido;
+		return $this->contenido;
 	}
 
-	public static function getFecha(){
+	public function getFecha(){
 
-		return $fecha;
+		return $this->fecha;
 	}
 
-	public static function setContenido($contenido){
+	public function setContenido($contenido){
 
 		$this->contenido = $contenido;
 	}
@@ -125,20 +125,21 @@ class MensajeForo
 		}
 
 		$rs->free();
-		return $tabla  ;
+		return $tabla;
 	}
 
 	public static function inserta($mensaje) {
 	
+
         $result = false;
         $conn = getConexionBD();
 		
 		$query=sprintf("INSERT INTO COMENTARIOS_FORO( ID_MENSAJE_PADRE,FORO, CONTENIDO, USUARIO_CREADOR,FECHA_CREACION) VALUES('%d', '%d', '%s', '%d', '%s')"
-		, $connex->real_escape_string($mensaje->idmensajePadre)
-        , $connex->real_escape_string($mensaje->idForo)
-        , $connex->real_escape_string($mensaje->contenido)
-		, $connex->real_escape_string($mensaje->idUsuario)
-		, $connex->real_escape_string($mensaje->fecha));
+		, $conn->real_escape_string($mensaje->idmensajePadre)
+        , $conn->real_escape_string($mensaje->idForo)
+        , $conn->real_escape_string($mensaje->contenido)
+		, $conn->real_escape_string($mensaje->idUsuario)
+		, $conn->real_escape_string($mensaje->fecha));
         $result = $conn->query($query);
 
 		if ($result) {
@@ -185,7 +186,7 @@ class MensajeForo
           , $conn->real_escape_string($mensaje->idForo)
           , $conn->real_escape_string($mensaje->contenido)
           , $conn->real_escape_string($mensaje->idUsuario)
-		  , $conn->real_escape_string($mensaje->fecha);
+		  , $conn->real_escape_string($mensaje->fecha));
 
 		$result = $conn->query($query);
 

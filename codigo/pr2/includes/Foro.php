@@ -13,19 +13,19 @@ class Foro
 		$this->tema = $tema;
 		$this->asunto = $asunto;
 	}
-	public static function getID() {
+	public function getId() {
 
-		return $id;
+		return $this->id;
 	}
 
-	public static function getTema() {
+	public function getTema() {
 
-		return $tema;
+		return $this->tema;
 	}
 
-	public static function getAsunto(int $id)  {
+	public function getAsunto(int $id)  {
 
-		return $asunto;
+		return $this->asunto;
 	}
 
 	public static function crea($tema, $asunto){
@@ -37,7 +37,7 @@ class Foro
 	//busca un foro y lo devuelve
 	public static function buscarForoPorId($id) {
 
-		$conn = $getConexionBD();
+		$conn = getConexionBD();
 
 		$query = sprintf("SELECT * FROM FORO WHERE ID='$id'");
 		$rs = $conn->query($query);
@@ -56,7 +56,7 @@ class Foro
 	//para devolver todos los foros
 	public static function devuelveForos(){
 
-		$conn = $getConexionBD();
+		$conn = getConexionBD();
 
   		$query = sprintf("SELECT * FROM FORO ");
   		$rs = $conn->query($query);
@@ -74,27 +74,26 @@ class Foro
 	//para mostrar el título de todos los foros
 	public static function mostrarTodos() {
 	
-		$conn = $getConexionBD();
+		$conn = getConexionBD();
 	
 		$query = sprintf("SELECT * FROM FORO ORDER BY TEMA_FOROS asc");
 		$rs = $conn->query($query);
-		$texto ='';
-		
-		 for($i=0;$fila= $rs->fetch_assoc(); $i++) {
-			$texto.=$texto.'<div id="foro"><h1>'.$fila['TEMA_FOROS'].'</h1><div id="asunto"><p>'.$fila['ASUNTO'].'</div></div>'.
 
-			<form class="inline" action="eliminarForoVista.php" method="POST">
-				//$raizMensajesFormParam
-				<input type="hidden" name="id" value="$foro->id" />
+		$html = '<ul>';
+		 for($i=0;$fila= $rs->fetch_assoc(); $i++) {
+			$idAux = $fila['ID'];
+			$html .= '<li>';
+			$html.=$fila['TEMA_FOROS'].'  '.$fila['ASUNTO'];
+			$html.=<<<EOS
+			<form class="inline" action="eliminarForo.php" method="POST">
+				<input type="hidden" name="id" value="$idAux" />
 				<button type="submit">Eliminar</button>
 			</form>
-			
-			//$texto=$texto;
-				
+			EOS;
+
+			$html .= '</li>';
 		}
-		$html= <<<EOF
-		$texto
-		EOF;
+		$html .= '</ul>';
 
 		$rs->free();
 	    return $html;
@@ -110,8 +109,8 @@ class Foro
 		
 		//falta enlazar el tema_foros con el id de la tabla categoria servicios
 		$query=sprintf("INSERT INTO FORO(TEMA_FOROS, ASUNTO) VALUES('%s', '%s')"
-			, $connex->real_escape_string($foro->tema)
-			, $connex->real_escape_string($foro->asunto));
+			, $conn->real_escape_string($foro->tema)
+			, $conn->real_escape_string($foro->asunto));
 
 		$result = $conn->query($query);
 		if ($result) {
@@ -155,7 +154,7 @@ class Foro
 		$query = sprintf("UPDATE Foro F SET TEMA_FOROS = %s, ASUNTO = '%s' WHERE F.ID = %d"
 		  , $foro->id
 		  , $conn->real_escape_string($foro->tema)
-		  , $conn->real_escape_string($foro->asunto);
+		  , $conn->real_escape_string($foro->asunto));
 
 		$result = $conn->query($query);
 
